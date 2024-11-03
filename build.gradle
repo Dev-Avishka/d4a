@@ -3,11 +3,11 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.dev' // Your chosen group ID
-version = '1.0.0' // Version of your library
+group = 'com.dev' // Your group ID
+version = '1.0.0' // Your library version
 
 repositories {
-    mavenCentral() // Using Maven Central for dependencies
+    mavenCentral() // For resolving dependencies
 }
 
 dependencies {
@@ -25,7 +25,7 @@ publishing {
             pom {
                 name = 'd4aSupport' // Name of your library
                 description = 'Creates a new format for audio called d4a' // Description
-                url = 'https://devavishka.netlify.app' // Make sure to use a proper URL
+                url = 'https://devavishka.netlify.app' // Project URL
 
                 licenses {
                     license {
@@ -36,18 +36,28 @@ publishing {
 
                 developers {
                     developer {
-                        id = 'Dev_Avishka' // Your chosen developer ID
+                        id = 'Dev_Avishka' // Your developer ID
                         name = 'Devdisa Avishka' // Your name
-                        email = 'mygmail@gmail.com' // Replace with your real email
+                        email = 'mygmail@gmail.com' // Your email
                     }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/yourusername/yourrepository.git'
+                    developerConnection = 'scm:git:ssh://github.com/yourusername/yourrepository.git'
+                    url = 'https://github.com/yourusername/yourrepository'
                 }
             }
         }
     }
 
-    // You can omit the repositories block here for JitPack
+    repositories {
+        maven {
+            url = uri("https://oss.sonatype.org/repository/snapshots/") // For snapshots
+        }
+    }
 }
 
 test {
-    useJUnitPlatform() // Enables JUnit 5 platform
+    useJUnitPlatform()
 }
