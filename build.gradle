@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.dev' // Your chosen group ID
+version = '1.0.0' // Version of your library
+
+repositories {
+    mavenCentral() // Using Maven Central for dependencies
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'commons-io:commons-io:2.17.0'
+    implementation 'com.google.guava:guava:30.1-jre'
+    implementation 'javazoom:jlayer:1.0.1'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = 'd4aSupport' // Name of your library
+                description = 'Creates a new format for audio called d4a' // Description
+                url = 'https://devavishka.netlify.app' // Make sure to use a proper URL
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'Dev_Avishka' // Your chosen developer ID
+                        name = 'Devdisa Avishka' // Your name
+                        email = 'mygmail@gmail.com' // Replace with your real email
+                    }
+                }
+            }
+        }
+    }
+
+    // You can omit the repositories block here for JitPack
+}
+
+test {
+    useJUnitPlatform() // Enables JUnit 5 platform
+}
